@@ -1,0 +1,12 @@
+.itemButton{
+   width: 5rem;
+   height: 5rem;
+   border: 0;
+   cursor: pointer;
+   border-radius: 10px;
+   background-color: white;
+}
+
+.itemButton:hover{
+    background-color: whitesmoke;
+}

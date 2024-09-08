@@ -1,0 +1,12 @@
+.dialogContent > div{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dialogContent > div > select{
+    width: 100%;
+    height: 55px;
+    border: 0;
+}
