@@ -1,8 +1,8 @@
 import React from "react";
 import "./item.css";
 
-const Item = ({ name }) => {
-  return <button className="itemButton">{name}</button>;
+const Item = ({ id, name }) => {
+  return <p key={id} className="itemButton">{name}</p>;
 };
 
 export default Item;

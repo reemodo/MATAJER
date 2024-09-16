@@ -1,32 +1,17 @@
 import React, { useState } from "react";
 import "./selected.css";
-import FormDialog from "../dialog/Dialog";
+import FormDialog from "../dialog/Dialog"; // Ensure path is correct
 
 function SelectedItemsContainer({
   selectedItems,
-  updateQuantity,
+  handleOpenDialog,
   deleteItem,
-  updatePrice,
+ 
 }) {
   const [selectedItem, setSelectedItem] = useState(null);
 
-  const handleOpenDialog = (item) => {
-    setSelectedItem(item);
-  };
 
-  const handleUpdateQuantity = (newQty) => {
-    if (selectedItem) {
-      updateQuantity(selectedItem.id, newQty);
-    }
-    setSelectedItem(null);
-  };
 
-  const handleUpdatePrice = (newPrice) => {
-    if (selectedItem) {
-      updatePrice(selectedItem.id, newPrice);
-    }
-    setSelectedItem(null);
-  };
 
   return (
     <div className="tableContainer">
@@ -43,13 +28,11 @@ function SelectedItemsContainer({
         </thead>
         <tbody>
           {selectedItems.map((item) => (
-            <tr key={item.id}>
+            <tr key={item.productid}>
               <td className="deleteContainer">
-                <button onClick={() => deleteItem(item.id)}>X</button>
+                <button onClick={() => deleteItem(item.productid)}>X</button>
               </td>
-              <td className="idContainer">
-                <div>{item.id}</div>
-              </td>
+              <td className="idContainer">{item.productid}</td>
               <td className="categoryContainer">{item.category}</td>
               <td
                 className="priceContainer"
@@ -61,23 +44,13 @@ function SelectedItemsContainer({
                 className="qtyContainer"
                 onClick={() => handleOpenDialog(item)}
               >
-                <div>{item.qty}</div>
+                {item.qty }
               </td>
-              <td className="totalContainer">{item.price * item.qty}</td>
+              <td className="totalContainer">{item.qty? item.price * item.qty:0}</td>
             </tr>
           ))}
         </tbody>
       </table>
-      {selectedItem && (
-        <FormDialog
-          open={!!selectedItem}
-          initialQty={selectedItem.qty}
-          initialPrice={selectedItem.price}
-          onClose={() => setSelectedItem(null)}
-          saveQuantity={handleUpdateQuantity}
-          savePrice={handleUpdatePrice}
-        />
-      )}
     </div>
   );
 }
