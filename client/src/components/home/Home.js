@@ -149,24 +149,6 @@ const Home = ({}) => {
           onSearch={handleSearch}
           onKeyDown={handleKeyDown}
         />
-{selectedItems.length > 0 ? 
-        <SelectedItems
-          selectedItems={selectedItems}
-          handleDelete={handleDelete}
-          handleOpenDialog={item => {
-            setSelectedItem(item);
-            setOpenDialog(true);
-          }}
-          selectedItem={selectedItem}
-          openDialog={openDialog}
-          updateQuantityAndPrice={updateQuantityAndPrice}
-          handleCloseDialog={() => {
-            setOpenDialog(false);
-            setSelectedItem(null);
-          }}
-          itemsDiscount={itemsDiscount}
-        />: ""
-        }
 
         {selectedItems.length > 0 ? (
           <SelectedItems
