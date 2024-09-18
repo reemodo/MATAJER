@@ -25,7 +25,7 @@ const Home = ({}) => {
       try {
         const data = await fetchItemDiscounts(item.productid);
 
-        if (data) {
+        if (data.length> 1) {
           setItemsDiscount((prevDiscounts) => ({
             ...prevDiscounts,
             [item.productid]: data,
@@ -180,6 +180,7 @@ const Home = ({}) => {
           inputPercentageValue={inputPercentageValue}
           onInputChange={handleInputChange}
           onInputPercentageChange={handleInputPercentageChange}
+          selectedItems={selectedItems}
         />
       </div>
 
