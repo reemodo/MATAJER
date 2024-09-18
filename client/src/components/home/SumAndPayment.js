@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Payment from "../PaymentMethods/Payment.js/Payment";
 import Discount from "./Discount";
 
@@ -7,30 +7,36 @@ const SumAndPayment = ({
   totalSum,
   discountAmount,
   discountedPrice,
-  paymentFinalPrice,
+  finalPrice,
   inputDiscountValue,
   inputPercentageValue,
   onInputChange,
   onInputPercentageChange,
-}) => (
-  <div className="sumAndPaymentContainer">
-    <div className="finalSum">
-      <p>num of category: {uniqueCategories}</p>
-      <p>sum: {totalSum}</p>
-      <Discount
-        totalSum={totalSum}
-        inputDiscountValue={inputDiscountValue}
-        inputPercentageValue={inputPercentageValue}
-        onDiscountChange={onInputChange}
-        onPercentageChange={onInputPercentageChange}
-      />
-      <p>Discount Amount: {discountAmount}</p>
-      <p>Price after Discount: {discountedPrice}</p>
+}) => {
+  const [PaymentAmount, setPaymentAmount] = useState(0);
+  return (
+    <div className="sumAndPaymentContainer">
+      <div className="finalSum">
+        <p>num of category: {uniqueCategories}</p>
+        <p>sum: {totalSum}</p>
+        <Discount
+          totalSum={totalSum}
+          inputDiscountValue={inputDiscountValue}
+          inputPercentageValue={inputPercentageValue}
+          onDiscountChange={onInputChange}
+          onPercentageChange={onInputPercentageChange}
+        />
+        <p>Discount Amount: {discountAmount}</p>
+        <p>Price after Discount: {discountedPrice - PaymentAmount}</p>
+      </div>
+      <div className="paymentDiv">
+        <Payment
+          PaymentAmount={PaymentAmount}
+          setPaymentAmount={setPaymentAmount}
+        />
+      </div>
     </div>
-    <div className="paymentDiv">
-      <Payment finalPrice={paymentFinalPrice} />
-    </div>
-  </div>
-);
+  );
+};
 
 export default SumAndPayment;

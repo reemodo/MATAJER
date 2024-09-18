@@ -7,7 +7,7 @@ import Modal from "../modal/Modal";
 import { useGetItems } from "../hooks/useGetItems";
 import { useGetItemDiscounts } from "../hooks/useGetItemDiscount";
 
-const Home = ({}) => {
+const Home = () => {
   const [selectedItems, setSelectedItems] = useState([]); // table items
   const [inputValue, setInputValue] = useState(""); // searchbar
   const [inputPercentageValue, setInputPercentageValue] = useState(""); //
@@ -174,7 +174,7 @@ const Home = ({}) => {
           totalSum={totalSum}
           discountAmount={discountAmount}
           discountedPrice={discountedPrice}
-          paymentFinalPrice={discountedPrice}
+          FinalPrice={discountedPrice}
           inputDiscountValue={inputDiscountValue}
           inputPercentageValue={inputPercentageValue}
           onInputChange={handleInputChange}
