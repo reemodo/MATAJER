@@ -5,7 +5,6 @@ export const useGetItems = () => {
   const [pendingGetEvent, setPendingEvent] = useState(false);
   const [isErrorGetEvent, setIsErrorEvent] = useState(false);
   const [getSelectedItems] = useLazyGetSelectedItemsQuery();
-
   const fetchItems = useCallback(
     async (inputValue) => {
       setPendingEvent(true);
@@ -13,6 +12,7 @@ export const useGetItems = () => {
 
       try {
         const itemData = await getSelectedItems(inputValue); // `unwrap()` handles errors properly
+        
         return itemData.data?.map(item => ({
           ...item,
           qty: 1

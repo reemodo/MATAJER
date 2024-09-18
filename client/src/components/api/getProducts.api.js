@@ -10,8 +10,16 @@ export const productsApi = createApi({
         url: `/products?inputValue=${inputValue}`, // Ensure this is the correct endpoint
         method: 'GET',
       }),
+      
+    }),
+    getSelectedItemDiscount: builder.query({
+      query: (productId) => ({
+        url: `/discounts/product/${productId}`, // Ensure this is the correct endpoint
+        method: 'GET',
+      }),
+      
     }),
   }),
 });
 
-export const { useGetSelectedItemsQuery, useLazyGetSelectedItemsQuery } = productsApi;
+export const { useGetSelectedItemsQuery, useLazyGetSelectedItemsQuery, useLazyGetSelectedItemDiscountQuery } = productsApi;

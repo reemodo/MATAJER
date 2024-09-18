@@ -3,7 +3,6 @@ import './Modal.css'; // Add styles for your modal
 
 const Modal = ({ isOpen, onClose, items, onSelectItem }) => {
   if (!isOpen) return null;
-
   return (
     <div className="modal-overlay">
       <div className="modal-content">
