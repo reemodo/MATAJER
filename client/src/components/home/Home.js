@@ -18,7 +18,6 @@ const Home = ({}) => {
   const [itemsDiscount, setItemsDiscount] = useState({})
   const { isLoading, error, fetchItems } = useGetItems();
   const { isLoading1, error1, fetchItemDiscounts } = useGetItemDiscounts();
-
   const handleSelectItem = useCallback(async (item) => {
     try {
       // Fetch the item discounts
@@ -171,6 +170,8 @@ const Home = ({}) => {
   inputPercentageValue={inputPercentageValue}
   onInputChange={handleInputChange}
   onInputPercentageChange={handleInputPercentageChange}
+  selectedItems={selectedItems}
+  
 />
       </div>
 

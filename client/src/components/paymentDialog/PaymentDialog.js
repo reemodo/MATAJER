@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
@@ -11,7 +12,22 @@ export default function PaymentDialog({
   handleClose,
   finalPrice,
   setFinalPrice,
+  handleOnSubmit
 }) {
+  const [amount, setAmount] = useState(finalPrice || 0); // Initialize state for TextField value
+
+  // Handle TextField change
+  const handleAmountChange = (event) => {
+    setAmount(event.target.value); // Update the state with the TextField value
+  };
+
+  // Handle form submit
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    handleOnSubmit(amount); // Call the provided function with the amount value
+    handleClose(); // Close the dialog
+  };
+
   return (
     <React.Fragment>
       <Dialog
@@ -19,19 +35,12 @@ export default function PaymentDialog({
         onClose={handleClose}
         PaperProps={{
           component: "form",
-          onSubmit: (event) => {
-            event.preventDefault();
-            const formData = new FormData(event.currentTarget);
-            const formJson = Object.fromEntries(formData.entries());
-            const email = formJson.email;
-            console.log(email);
-            handleClose();
-          },
+          onSubmit: handleSubmit, // Use handleSubmit for form submission
         }}
       >
-        <DialogTitle> </DialogTitle>
+        <DialogTitle>Payment</DialogTitle>
         <DialogContent>
-          <DialogContentText></DialogContentText>
+          <DialogContentText>Please enter the amount to pay.</DialogContentText>
           <TextField
             autoFocus
             required
@@ -40,6 +49,8 @@ export default function PaymentDialog({
             type="number"
             fullWidth
             variant="standard"
+            value={amount} // Bind state to the TextField
+            onChange={handleAmountChange} // Handle change in input
           />
         </DialogContent>
         <DialogActions>

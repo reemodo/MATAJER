@@ -11,7 +11,8 @@ const SumAndPayment = ({
   inputDiscountValue,
   inputPercentageValue,
   onInputChange,
-  onInputPercentageChange
+  onInputPercentageChange,
+  selectedItems
 }) => (
   <div className="sumAndPaymentContainer">
     <div className="finalSum">
@@ -28,7 +29,7 @@ const SumAndPayment = ({
       <p>Price after Discount: {discountedPrice}</p>
     </div>
     <div className="paymentDiv">
-      <Payment finalPrice={paymentFinalPrice} />
+      <Payment finalPrice={paymentFinalPrice} selectedItems={selectedItems} discountAmount={discountAmount} paymentFinalPrice={paymentFinalPrice} />
     </div>
   </div>
 );

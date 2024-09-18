@@ -19,7 +19,14 @@ export const productsApi = createApi({
       }),
       
     }),
+    postOrder: builder.mutation({
+      query: (newOrder) => ({
+        url: `/orders`, // Ensure this is the correct endpoint
+        method: 'POST',
+        body: newOrder, // Send the new order in the request body
+      }),
+    }),
   }),
 });
 
-export const { useGetSelectedItemsQuery, useLazyGetSelectedItemsQuery, useLazyGetSelectedItemDiscountQuery } = productsApi;
+export const { useGetSelectedItemsQuery, useLazyGetSelectedItemsQuery, useLazyGetSelectedItemDiscountQuery, usePostOrderMutation } = productsApi;
