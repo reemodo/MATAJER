@@ -12,6 +12,7 @@ const SumAndPayment = ({
   inputPercentageValue,
   onInputChange,
   onInputPercentageChange,
+  selectedItems,
 }) => {
   const [PaymentAmount, setPaymentAmount] = useState(0);
   return (
@@ -33,10 +34,10 @@ const SumAndPayment = ({
         <Payment
           PaymentAmount={PaymentAmount}
           setPaymentAmount={setPaymentAmount}
+          selectedItems={selectedItems}
         />
       </div>
     </div>
   );
 };
-
 export default SumAndPayment;

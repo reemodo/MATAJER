@@ -5,13 +5,10 @@ import FormDialog from "../dialog/Dialog"; // Ensure path is correct
 function SelectedItemsContainer({
   selectedItems,
   handleOpenDialog,
-  deleteItem, itemsDiscount
- 
+  deleteItem,
+  itemsDiscount,
 }) {
   const [selectedItem, setSelectedItem] = useState(null);
-
-
-
 
   return (
     <div className="tableContainer">
@@ -23,7 +20,7 @@ function SelectedItemsContainer({
             <th>Name</th>
             <th>Category</th>
             <th>Price</th>
-            <th>Discounts</th>
+
             <th>Quantity</th>
             <th>Total</th>
           </tr>
@@ -43,28 +40,16 @@ function SelectedItemsContainer({
               >
                 {item.price}
               </td>
-              <div  className="priceContainer">
-                {itemsDiscount[item.productid] && itemsDiscount[item.productid].length > 0 ? (
-                  <ul>
-                    {itemsDiscount[item.productid].map(discount => (
-                      <li key={discount.discountid}>
-                        <p>Offer: {discount.offer_name}</p>
-                        <p>Discount: ${discount.discount}</p>
-                        <p>Valid from {discount.startdate} to {discount.enddate}</p>
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <p>No discounts available</p>
-                )}
-              </div>
+
               <td
                 className="qtyContainer"
                 onClick={() => handleOpenDialog(item)}
               >
-                {item.qty }
+                {item.qty}
               </td>
-              <td className="totalContainer">{item.qty? item.price * item.qty:0}</td>
+              <td className="totalContainer">
+                {item.qty ? item.price * item.qty : 0}
+              </td>
             </tr>
           ))}
         </tbody>

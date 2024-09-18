@@ -1,11 +1,36 @@
 import React, { useState } from 'react'
 import './payment.css'
 import PaymentDialog from '../../paymentDialog/PaymentDialog';
-const Payment = ({PaymentAmount, setPaymentAmount}) => {
+import { usePostOrders } from '../../hooks/usePostOrder';
+import { useCallback } from 'react';
+
+const Payment = ({selectedItems, discountAmount, paymentFinalPrice , PaymentAmount,
+  setPaymentAmount,}) => {
   const [open, setOpen] = React.useState(false);
+  const { isLoading1, error1, postOrders } = usePostOrders();
+
+  const handleOnSubmit = useCallback(async (amount) => {
+    try {
+      if(paymentFinalPrice - amount <= 0){
+
+        const response = await postOrders({selectedItems, discountAmount, paymentFinalPrice});
+        if (response) {
+          // Handle multiple search results
+          alert("order add")
+        } else{
+          alert("Field to add order")
+          }
+      }
+      
+      
+    } catch (error) {
+      console.error('Error add order items:', error);
+    }
+  }, [postOrders, selectedItems]);
 
   const handleClickOpen = () => {
     setOpen(true);
+    
   };
 
   const handleClose = () => {
@@ -18,6 +43,7 @@ const Payment = ({PaymentAmount, setPaymentAmount}) => {
         handleClose={handleClose}
         PaymentAmount={PaymentAmount}
         setPaymentAmount={setPaymentAmount}
+        handleOnSubmit={handleOnSubmit}
       />)}
       <button onClick={handleClickOpen} >CASH</button>
       <button onClick={handleClickOpen}>VISA</button>
