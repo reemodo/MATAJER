@@ -38,7 +38,7 @@ const Payment = ({selectedItems, discountAmount, paymentFinalPrice}) => {
   return (
     <div className='paymentContainer'>
       {open==true && (
-        <PaymentDialog finalPrice setFinalPrice handleOnSubmit ={handleOnSubmit} handleClickOpen={handleClickOpen} handleClose={handleClose} handleOnSubmit={handleOnSubmit}/>
+        <PaymentDialog finalPrice setFinalPrice handleClickOpen={handleClickOpen} handleClose={handleClose} handleOnSubmit={handleOnSubmit}/>
       )}
       <button onClick={handleClickOpen} >CASH</button>
       <button onClick={handleClickOpen}>VISA</button>
