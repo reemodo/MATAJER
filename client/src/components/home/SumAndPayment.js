@@ -1,6 +1,6 @@
-import React from 'react';
-import Payment from '../PaymentMethods/Payment.js/Payment';
-import Discount from './Discount';
+import React from "react";
+import Payment from "../PaymentMethods/Payment.js/Payment";
+import Discount from "./Discount";
 
 const SumAndPayment = ({
   uniqueCategories,
@@ -11,7 +11,7 @@ const SumAndPayment = ({
   inputDiscountValue,
   inputPercentageValue,
   onInputChange,
-  onInputPercentageChange
+  onInputPercentageChange,
 }) => (
   <div className="sumAndPaymentContainer">
     <div className="finalSum">
@@ -19,7 +19,7 @@ const SumAndPayment = ({
       <p>sum: {totalSum}</p>
       <Discount
         totalSum={totalSum}
-        inputDiscountValue={totalSum}
+        inputDiscountValue={inputDiscountValue}
         inputPercentageValue={inputPercentageValue}
         onDiscountChange={onInputChange}
         onPercentageChange={onInputPercentageChange}
@@ -34,4 +34,3 @@ const SumAndPayment = ({
 );
 
 export default SumAndPayment;
-
