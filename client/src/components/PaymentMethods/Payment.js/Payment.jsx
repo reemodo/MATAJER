@@ -4,16 +4,16 @@ import PaymentDialog from '../../paymentDialog/PaymentDialog';
 import { usePostOrders } from '../../hooks/usePostOrder';
 import { useCallback } from 'react';
 
-const Payment = ({selectedItems, discountAmount, paymentFinalPrice , PaymentAmount,
+const Payment = ({selectedItems, discountAmount , PaymentAmount,
   setPaymentAmount,}) => {
   const [open, setOpen] = React.useState(false);
   const { isLoading1, error1, postOrders } = usePostOrders();
 
   const handleOnSubmit = useCallback(async (amount) => {
     try {
-      if(paymentFinalPrice - amount <= 0){
+      if(amount - PaymentAmount  <= 0){
 
-        const response = await postOrders({selectedItems, discountAmount, paymentFinalPrice});
+        const response = await postOrders({selectedItems, discountAmount, PaymentAmount});
         if (response) {
           // Handle multiple search results
           alert("order add")

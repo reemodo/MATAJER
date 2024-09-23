@@ -19,9 +19,12 @@ export default function PaymentDialog({
   // Handle form submit
   const handleSubmit = (event) => {
     event.preventDefault();
-    setPaymentAmount(amount);
-    handleOnSubmit(amount);
-    handleClose();
+    const numericAmount = parseFloat(amount);
+    if (!isNaN(numericAmount)) {
+      setPaymentAmount(numericAmount);
+      handleOnSubmit(numericAmount);
+      handleClose();
+    }
   };
 
   // Handle input change
